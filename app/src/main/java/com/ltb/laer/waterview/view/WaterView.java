@@ -34,18 +34,16 @@ import java.util.Random;
 
 public class WaterView extends FrameLayout {
     private static final int WHAT_ADD_PROGRESS = 1;
-    /**用来计算偏差值基础倍数，值越大，偏移越小*/
-    private static final int BASE_OFFSET_MUL = 12;
     /**view变化的y抖动范围*/
-    private static final int CHANGE_RANGE = 50;
-    /**控制抖动动画执行的快慢*/
-    public static final int PROGRESS_DELAY_MILLIS = 60;
+    private static final int CHANGE_RANGE = 10;
+    /**控制抖动动画执行的快慢，人眼不能识别16ms以下的*/
+    public static final int PROGRESS_DELAY_MILLIS = 12;
     /**控制移除view的动画执行时间*/
     public static final int REMOVE_DELAY_MILLIS = 2000;
     /**添加水滴时动画显示view执行的时间*/
     public static final int ANIMATION_SHOW_VIEW_DURATION = 500;
     /**控制水滴动画的快慢*/
-    private List<Float> mSpds = Arrays.asList(2.0f, 1.7f, 1.5f, 1.3f,2.3f);
+    private List<Float> mSpds = Arrays.asList(0.5f, 0.3f, 0.2f, 0.1f);
     /**x最多可选取的随机数值*/
     private static final List<Float> X_MAX_CHOSE_RANDOMS = Arrays.asList(
             0.01f,0.05f,0.1f,0.6f,0.11f, 0.16f, 0.21f, 0.26f, 0.31f, 0.7f, 0.75f, 0.8f, 0.85f, 0.87f);
@@ -277,7 +275,7 @@ public class WaterView extends FrameLayout {
             View view = mViews.get(i);
             float spd = (float) view.getTag(R.string.spd);
             float original = (float) view.getTag(R.string.original_y);
-            float step = CHANGE_RANGE / BASE_OFFSET_MUL * spd;
+            float step = spd;
             boolean isUp = (boolean) view.getTag(R.string.isUp);
             float translationY;
             if (isUp) {
