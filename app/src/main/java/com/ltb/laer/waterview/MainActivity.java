@@ -30,12 +30,6 @@ public class MainActivity extends AppCompatActivity {
         mWaterView.setWaters(mWaters);
     }
 
-    @Override
-    protected void onDestroy() {
-        mWaterView.onDestroy();
-        super.onDestroy();
-    }
-
     public void onRest(View view) {
         mWaterView.setWaters(mWaters);
     }

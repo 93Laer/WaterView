@@ -108,6 +108,11 @@ public class WaterView extends FrameLayout {
         maxX = w;
         maxY = h;
     }
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        onDestroy();
+    }
 
     /**
      * 重置子view
@@ -369,7 +374,7 @@ public class WaterView extends FrameLayout {
     /**
      * 销毁
      */
-    public void onDestroy() {
+    private void onDestroy() {
         isCancelAnimtion = true;
         mHandler.removeCallbacksAndMessages(this);
     }
